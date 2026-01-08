@@ -30,9 +30,6 @@ This tool:
 - AI Data Analyst Agent (LangChain)
 - Prompt-engineered marketing insights
 - Secure API key handling using `.env`
-- 🧱 Clean, modular project structure
+- Clean, modular project structure
 
 ---
-
-## 🏗️ Project Architecture
-
