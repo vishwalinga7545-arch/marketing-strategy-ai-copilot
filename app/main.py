@@ -1,22 +1,21 @@
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
 import streamlit as st
-import pandas as pd
+from utils.file_loader import load_marketing_file, summarize_dataframe
+from agents.data_analyst_agent import analyze_marketing_data
 
-st.set_page_config(page_title="Marketing Strategy AI Copilot")
+st.title("Marketing Strategy AI Copilot")
 
-st.title("🚀 Marketing Strategy AI Copilot")
-st.write("Upload your marketing data (Excel or CSV)")
+uploaded_file = st.file_uploader("Upload CSV or Excel", type=["csv", "xlsx"])
 
-uploaded_file = st.file_uploader(
-    "Upload marketing data file",
-    type=["xlsx", "csv"]
-)
-##DISPLAY DATA
-
-if uploaded_file is not None:
-    if uploaded_file.name.endswith(".csv"):
-        df = pd.read_csv(uploaded_file)
-    else:
-        df = pd.read_excel(uploaded_file)
-
-    st.subheader("📊 Uploaded Data Preview")
+if uploaded_file:
+    df = load_marketing_file(uploaded_file)
     st.dataframe(df.head())
+
+    if st.button("Analyze with AI"):
+        summary = summarize_dataframe(df)
+        insights = analyze_marketing_data(summary)
+        st.write(insights)
