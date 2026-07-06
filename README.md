@@ -1,4 +1,4 @@
-# Marketing Strategy AI Copilot
+# Marketing AI Copilot
 
 A Streamlit-based AI application that analyzes marketing data (CSV / Excel)
 and generates actionable insights using an AI Data Analyst Agent built with LangChain.
